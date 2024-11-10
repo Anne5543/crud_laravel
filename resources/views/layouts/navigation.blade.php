@@ -11,17 +11,18 @@
             <div class="hidden sm:flex sm:items-center sm:ms-auto">
                 <div class="space-x-8">
                     <a href="#inicio" class="text-white no-underline hover:text-gray-300">Início</a>
-                    <a href="#equipe" class="text-white no-underline hover:text-gray-300">Equipe</a>
-                    <a href="#servicos" class="text-white no-underline hover:text-gray-300">Serviços</a>
-                    <a href="#horarios" class="text-white no-underline hover:text-gray-300">Horários</a>
+                    <a href="#sobre" class="text-white no-underline hover:text-gray-300">Sobre</a>
+                    <a href="#serviços" class="text-white no-underline hover:text-gray-300">Serviços</a>
                     <a href="#agendamentos" class="text-white no-underline hover:text-gray-300">Agendamentos</a>
+                    <a href="#contatos" class="text-white no-underline hover:text-gray-300">Feedback</a>
                 </div>
+
             </div>
 
         
             <div class="hidden sm:flex sm:items-center relative">
                 @if (Auth::check())
-                <button @click="dropdownOpen = !dropdownOpen" class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-white bg-gray-800 hover:bg-gray-700 focus:outline-none transition ease-in-out duration-150">
+                <button @click="dropdownOpen = !dropdownOpen" class="inline-flex items-center px-3 py-2 border border-none text-sm leading-4 font-medium rounded-md text-white hover:bg-gray-700 focus:outline-none transition ease-in-out duration-150" style="background-color: #7c137b;">
                     <div>{{ Auth::user()->name }}</div>
                         <div class="ms-1">
                             <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
@@ -30,14 +31,14 @@
                         </div>
                 </button>
         
-                <div x-show="dropdownOpen" x-transition class="absolute left-0 pt-5 w-48 bg-white shadow-lg rounded-md">
+                <div x-show="dropdownOpen" x-transition class="absolute left-0 right-0 top-full w-48 bg-white shadow-lg rounded-md">
                     <a href="{{ route('profile.edit') }}" class="block px-4 py-2 text-black no-underline">Perfil</a>
-
                     <form method="POST" action="{{ route('logout') }}">
                         @csrf
                         <button type="submit" class="block px-4 py-2 text-black no-underline">Sair</button>
                     </form>
                 </div>
+
                 @else
                     <a href="{{ route('login') }}" class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700 focus:outline-none transition ease-in-out duration-150 no-underline">
                         {{ __('Login') }}
@@ -59,34 +60,36 @@
     <div :class="{'block': open, 'hidden': ! open}" class="hidden sm:hidden">
         <div class="pt-2 pb-3 space-y-1">
             <a href="#inicio" class="block px-4 py-2 text-white hover:bg-gray-700 no-underline">Início</a>
-            <a href="#equipe" class="block px-4 py-2 text-white hover:bg-gray-700 no-underline">Equipe</a>
+            <a href="#sobre" class="block px-4 py-2 text-white hover:bg-gray-700 no-underline">Sobre</a>
             <a href="#servicos" class="block px-4 py-2 text-white hover:bg-gray-700 no-underline">Serviços</a>
-            <a href="#horarios" class="block px-4 py-2 text-white hover:bg-gray-700 no-underline">Horários</a>
             <a href="#agendamentos" class="block px-4 py-2 text-white hover:bg-gray-700 no-underline">Agendamentos</a>
+            <a href="#agendamentos" class="block px-4 py-2 text-white hover:bg-gray-700 no-underline">Feedback</a>
+            <a href="Feedback" class="block px-4 py-2 text-white hover:bg-gray-700 no-underline">Agendamentos</a>
         </div>
 
   
-        <div class="border-t border-gray-700">
-            <div class="mt-3">
-                @if (Auth::check())
-                    <x-responsive-nav-link :href="route('profile.edit')" class="text-white no-underline">
-                        {{ __('Profile') }}
-                    </x-responsive-nav-link>
+        <div class="border-t" style="color: white;">
+    <div class="mt-3">
+        @if (Auth::check())
+            <x-responsive-nav-link :href="route('profile.edit')" class="text-white no-underline block px-4 py-2" style="color: white;">
+                {{ __('Profile') }}
+            </x-responsive-nav-link>
 
-                    <form method="POST" action="{{ route('logout') }}">
-                        @csrf
-                        <x-responsive-nav-link :href="route('logout')"
-                                onclick="event.preventDefault(); this.closest('form').submit();" class="text-white no-underline">
-                            {{ __('Log Out') }}
-                        </x-responsive-nav-link>
-                    </form>
-                @else
-                    <x-responsive-nav-link :href="route('login')" class="text-white no-underline">
-                        {{ __('Login') }}
-                    </x-responsive-nav-link>
-                @endif
-            </div>
-        </div>
+            <form method="POST" action="{{ route('logout') }}">
+                @csrf
+                <x-responsive-nav-link :href="route('logout')"
+                        onclick="event.preventDefault(); this.closest('form').submit();" class="text-white no-underline block px-4 py-2" style="color: white;">
+                    {{ __('Log Out') }}
+                </x-responsive-nav-link>
+            </form>
+        @else
+            <x-responsive-nav-link :href="route('login')" class="text-white no-underline" style="color: white;">
+                {{ __('Login') }}
+            </x-responsive-nav-link>
+        @endif
+    </div>
+</div>
+
     </div>
 </nav>
 <script src="https://cdn.jsdelivr.net/npm/alpinejs@2.8.2/dist/alpine.min.js" defer></script>
