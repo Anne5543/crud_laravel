@@ -31,7 +31,7 @@
                         </div>
                 </button>
         
-                <div x-show="dropdownOpen" x-transition class="absolute left-0 right-0 top-full w-48 bg-white shadow-lg rounded-md">
+                <div x-show="dropdownOpen" x-transition class="absolute top-full w-48 bg-white shadow-lg rounded-md">
                     <a href="{{ route('profile.edit') }}" class="block px-4 py-2 text-black no-underline">Perfil</a>
                     <form method="POST" action="{{ route('logout') }}">
                         @csrf

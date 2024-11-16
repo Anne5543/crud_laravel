@@ -1,14 +1,19 @@
 <?php
 
 namespace App\Http\Controllers;
-use App\Models\Feedback;
-use Illuminate\Http\Request;
 
-class FeedbackController extends Controller
+use Illuminate\Http\Request;
+use App\Models\Servico;
+
+class AgendamentosController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
+    public function dashboard()
+    {
+        $servicos = Servico::all();
+        
+        return view('dashboard', compact('servicos'));
+    }
+
     public function index()
     {
         //
@@ -19,7 +24,7 @@ class FeedbackController extends Controller
      */
     public function create()
     {
-        //
+       
     }
 
     /**
@@ -27,18 +32,7 @@ class FeedbackController extends Controller
      */
     public function store(Request $request)
     {
-      
-            $validatedData = $request->validate([
-                'nome' => 'required|string|max:255',
-                'telefone' => 'required|string|max:15',
-                'email' => 'required|email|max:255',
-                'comentario' => 'required|string|max:500',
-            ]);
-    
-            Feedback::create($validatedData);
-    
-            return redirect()->back()->with('success', 'Comentário enviado com sucesso!');
-       
+        //
     }
 
     /**

@@ -11,9 +11,13 @@ use Illuminate\View\View;
 
 class AuthenticatedSessionController extends Controller
 {
-    /**
-     * Display the login view.
-     */
+    protected function authenticated(Request $request, $user)
+    {
+    {
+       
+    }
+    }
+    
     public function create(): View
     {
         return view('auth.login');
@@ -24,11 +28,16 @@ class AuthenticatedSessionController extends Controller
      */
     public function store(LoginRequest $request): RedirectResponse
     {
-        $request->authenticate();
-
-        $request->session()->regenerate();
-
-        return redirect()->intended(route('dashboard', absolute: false));
+        $request->validate([
+            'email' => 'required|email',
+            'password' => 'required',
+        ]);
+    
+        if (Auth::attempt($request->only('email', 'password'))) {
+            return redirect()->route('redirect');
+        }
+    
+        return back()->withErrors(['email' => 'Credenciais inválidas'])->onlyInput('email');
     }
 
     /**

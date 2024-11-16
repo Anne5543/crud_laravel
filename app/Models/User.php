@@ -6,13 +6,14 @@ namespace App\Models;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Http\Request;
 
 class User extends Authenticatable
 {
     use Notifiable;
 
     protected $fillable = [
-        'name', 'email', 'password', 'função_usuario',
+        'name', 'email', 'password', 'user_type',
     ];
 
     protected $hidden = [
@@ -22,5 +23,21 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function store(Request $request)
+    {
+        $validated = $request->validate([
+            'email' => 'required|email|unique:users,email',
+            'password' => 'required|min:8|confirmed',
+        ]);
+
+        $user = new User();
+        $user->email = $validated['email'];
+        $user->password = bcrypt($validated['password']);
+        $user->save();
+
+        return redirect()->route('login')->with('success', 'Usuário cadastrado com sucesso!');
+    }
 }
+
 

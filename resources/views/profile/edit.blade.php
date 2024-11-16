@@ -1,4 +1,6 @@
 <x-app-layout>
+    @section('content')
+    @include('layouts.navigation') 
     <x-slot name="header">
         <h2 class="font-semibold  text-gray-800 leading-tight">
             {{ __('Profile') }}

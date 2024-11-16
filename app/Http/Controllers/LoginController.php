@@ -1,34 +1,29 @@
-<?php 
+<?php
 
-namespace App\Http\Controllers;
-
+namespace App\Http\Controllers\Auth;
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
-class AuthController extends Controller
+class LoginController extends Controller
 {
-    public function showLoginForm()
-    {
-        return view('auth.login');
-    }
-
     public function login(Request $request)
     {
         $validated = $request->validate([
             'email' => 'required|email',
-            'password' => 'required|min:8',
+            'password' => 'required',
         ]);
 
         if (Auth::attempt(['email' => $validated['email'], 'password' => $validated['password']])) {
-            return redirect()->route('redirect');
+            $user = Auth::user();
+            if ($user->user_type == 0) {
+                return redirect()->route('tela_admin');
+            } else {
+                return redirect()->route('dashboard');
+            }
         }
 
         return back()->withErrors(['email' => 'Credenciais inválidas']);
     }
+};
 
-    public function logout()
-    {
-        Auth::logout();
-        return redirect()->route('login');
-    }
-}

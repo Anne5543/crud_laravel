@@ -4,234 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="stylesheet" href="style.css">
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-    <style>
-         .banner {
-            width: 100%;  
-            height: auto; 
-            display: block;
-            margin: 0;
-            padding-top: 58px;
-           
-        }
-
-        #sobre {
-            scroll-margin-top: 94px;
-            height: 100vh;
-            margin-bottom: 50px;
-        }
-        h1 {
-            text-align: center;
-        }
-
-        #serviços {
-            scroll-margin-top: 91px;
-            margin-top: 40px;
-        }
-        .card {
-            margin-bottom: 20px;
-            border: none;
-            border-radius: 15px;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-            transition: transform 0.3s;
-        }
-        .card:hover {
-            transform: translateY(-5px);
-        }
-        .card-title {
-            color: #333;
-            font-size: 1.5rem;
-            font-weight: bold;
-        }
-        .card-text {
-            color: #666;
-        }
-        .price {
-            color: #FF6B6B;
-            font-size: 1.25rem;
-            font-weight: bold;
-        }
-        
-        #texto {
-            flex: 1;
-            text-align: center;
-            margin-left: 40px;
-        }
-
-       
-     
-        #agendamentos {
-            scroll-margin-top: 55px;
-            padding-top: 50px;
-            height: 90vh;
-        }
-        #precos{
-            scroll-margin-top: 95px;
-        }
-
-        @media (max-width: 991.98px) {
-            #perfil {
-                display: none;
-            }
-            
-        }
-
-        @media screen and (max-width: 768px) {
-            #forcon {
-                flex-direction: column;
-            }
-
-            #cont {
-                margin-bottom: 20px;
-            }
-
-            .btn {
-                margin-bottom: 20px;
-            }
-            #imagem{
-                display: none;
-            }
-            
-        }
-
-        @media only screen and (max-width: 750px) {
-            #banner {
-                max-width: 100%;
-                height: auto;
-            }
-
-            #imagem {
-                width: 100%;
-                max-width: 100%;
-                height: auto;
-            }
-
-            #texto {
-                font-size: 12px;
-                margin-left: 0;
-            }
-
-            #sobre {
-                flex-direction: column;
-                padding-top: 20px;
-            }
-
-            h1 {
-                font-size: 20px;
-            }
-        }
-
-        .container-fluid {
-            padding-left: 15px;
-            padding-right: 15px;
-        }
-
-        .conteiner {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 15px;
-        } 
-
-        .row-cols-1.row-cols-md-3.g-3 .col {
-            margin-bottom: -100px;
-        }
-
-        #contatos {
-            color: #000;
-            padding: 50px 0 0;
-            transform: scale(0.92);
-        }
-
-        #forcon {
-            align-items: center;
-            display: flex;
-            justify-content: center;
-        }
-
-        #cont {
-            display: flex;
-            flex-direction: column;
-        }
-
-        #formasc {
-            flex-direction: column;
-            display: flex;
-        }
-
-        #contatos h1 {
-            font-size: 24px;
-            margin-bottom: 10px;
-        }
-
-        #contatos p {
-            font-size: 16px;
-            margin-bottom: 20px;
-        }
-
-        #contatos h3 {
-            font-size: 18px;
-        }
-
-        #contatos input {
-            width: 50%;
-            height: 50px;
-            padding: 10px;
-            margin-bottom: 10px;
-            border-radius: 5px;
-            border: 1px solid #ccc;
-            box-sizing: border-box;
-        }
-
-        #contatos button {
-            padding: 10px 20px;
-            background-color: #3498db;
-            color: white;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-        }
-
-        #contatos button:hover {
-            background-color: #826ff1;
-        }
-
-        #contatos button:active {
-            background-color: #1d155f;
-        }
-
-        .foo1 {
-            color: #fff;
-            text-align: center;
-        }
-
-        .foo2 {
-            height: 50px;
-            font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-            background-color: #7c137b;
-            color: #fff;
-            padding: 15px;
-            text-align: center;
-        }
-
-        .foo2 p {
-            font-size: 17px;
-        }
-
-        .btn {
-            align-items: center;
-            justify-content: center;
-            width: 100px;
-            height: 60px;
-            padding: 0;
-            text-decoration: none;
-        }
-        .feature-icon {
-            font-size: 2rem;
-            color: #FF6B6B;
-        }
-        
-    </style>
+    
 </head>
 <body class="font-sans bg-gray-100">
     @section('content')
@@ -258,6 +34,7 @@
                     <ul class="list-unstyled">
                         <li class="lead"  style="text-align:justify; font-size:17px">🐾 Compromisso com o bem-estar animal</li>
                         <li class="lead"  style="text-align:justify; font-size:17px">🐾 Qualidade garantida</li>
+                        <li class="lead"  style="text-align:justify; font-size:17px">🐾Preços que cabem no seu bolso</li>
                     </ul>
                 </div>
                 <div class="col-md-6">
@@ -377,7 +154,12 @@
             <div class="mb-3">
                 <label for="servico" class="form-label">Serviço<span style="color: red;">*</span></label>
                 <select class="form-select" id="servico" name="servico" required>
-                </select>
+                    <option value="" disabled selected>Selecione um serviço</option>
+                    @foreach ($servicos as $servico)
+        <option value="{{ $servico->id }}">{{ $servico->nome }}</option>
+    @endforeach
+</select>
+
             </div>
 
             <button type="submit" class="btn btn-primary btn-block">AGENDAR</button>
