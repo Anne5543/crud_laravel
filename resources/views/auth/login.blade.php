@@ -1,47 +1,43 @@
-<x-guest-layout>
-    <!-- Session Status -->
-    <x-auth-session-status class="mb-4" :status="session('status')" />
+<link rel="stylesheet" href="login.css">
+<script src="./script.js"></script>
 
-    <form method="POST" action="{{ route('login.submit') }}">
+
+<div class="login1">
+    <form method="POST" action="{{ route('login') }}" id="loginForm">
         @csrf
+        <div class="row">
+            <h1 class="destaque">PetCharm</h1>
+            <p class="destaque">Faça login para cuidar ainda melhor do seu pet! 🐾</p><br>
 
-        <!-- Email Address -->
-        <div>
-            <x-input-label for="email" :value="__('Email')" />
-            <x-text-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required autofocus autocomplete="username" />
-            <x-input-error :messages="$errors->get('email')" class="mt-2" />
-        </div>
+            <!-- Email -->
+            <div class="form-group">
+                <label for="email">Digite seu email:</label>
+                <input type="email" name="email" id="email" placeholder="Email" class="text" required autofocus style="height: 35px;">
+                @error('email')
+                <span class="text-red-500">{{ $message }}</span>
+                @enderror
+            </div><br>
 
-        <!-- Password -->
-        <div class="mt-4">
-            <x-input-label for="password" :value="__('Password')" />
+            <!-- Senha -->
+            <div class="form-group">
+                <label for="password">Digite sua senha:</label>
+                <input type="password" name="password" id="password" placeholder="Senha" class="text" required style="height: 35px;"><br><br>
+                @error('password')
+                <span class="text-red-500">{{ $message }}</span>
+                @enderror
+            </div><br>
 
-            <x-text-input id="password" class="block mt-1 w-full"
-                            type="password"
-                            name="password"
-                            required autocomplete="current-password" />
+            <!-- Mostrar senha -->
+            <button type="button" id="mos" onclick="mostrar()" class="submit">Mostrar senha</button><br><br>
 
-            <x-input-error :messages="$errors->get('password')" class="mt-2" />
-        </div>
+            <input type="submit" value="Entrar" class="submit" name="submit">
 
-        <!-- Remember Me -->
-        <div class="block mt-4">
-            <label for="remember_me" class="inline-flex items-center">
-                <input id="remember_me" type="checkbox" class="rounded border-gray-300 text-indigo-600 shadow-sm focus:ring-indigo-500" name="remember">
-                <span class="ms-2 text-sm text-gray-600">{{ __('Remember me') }}</span>
-            </label>
-        </div>
-
-        <div class="flex items-center justify-end mt-4">
-            @if (Route::has('password.request'))
-                <a class="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" href="{{ route('password.request') }}">
-                    {{ __('Forgot your password?') }}
-                </a>
-            @endif
-
-            <x-primary-button class="ms-3">
-                {{ __('Log in') }}
-            </x-primary-button>
+            <div class="links1">
+                <p class="destaque">Não tem uma conta? <a href="{{ route('register') }}">Cadastre-se</a></p>
+            </div>
         </div>
     </form>
-</x-guest-layout>
+
+    <!-- Imagem -->
+    <img id="img" src="{{ asset('images/pettcharm.png') }}" alt="PetCharm Logo">
+</div>

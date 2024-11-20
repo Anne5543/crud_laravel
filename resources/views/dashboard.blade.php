@@ -106,13 +106,14 @@
                 </div>
             </div>
         </div>
-    </div><br><br>
+    </div><br><br><br>
     <div class="container" id="agendamentos">
         <h3 class="text-center mb-4">AGENDAMENTOS DE SERVIÇOS</h3>
         <div style="text-align: center;">
             <p><strong> Funcionamos de segunda a sábado/ De 8:00 h às 18:00h</strong></p>
         </div>
-        <form action="./crudAgendamento/agendar.php" method="post" style="max-width: 400px; margin: 0 auto; border: 1px solid #ced4da; padding: 20px; border-radius: 10px;">
+        <form action="{{ route('agendamentos.store') }}" method="post" style="max-width: 400px; margin: 0 auto; border: 1px solid #ced4da; padding: 20px; border-radius: 10px;">
+            @csrf
             <div class="row">
                 <div class="col">
                     <div class="mb-3">
@@ -156,9 +157,9 @@
                 <select class="form-select" id="servico" name="servico" required>
                     <option value="" disabled selected>Selecione um serviço</option>
                     @foreach ($servicos as $servico)
-        <option value="{{ $servico->id }}">{{ $servico->nome }}</option>
-    @endforeach
-</select>
+                        <option value="{{ $servico->id }}">{{ $servico->nome }}</option>
+                    @endforeach
+                </select>
 
             </div>
 
@@ -205,10 +206,10 @@
         <footer class="foo1">
             <div class="container text-center mt-5">
                 <a href="https://www.facebook.com/annecarolineteixeira.brandao.5?locale=pt_BR" class="btn btn-primary btn-icon btn-facebook" target="_blank">
-                    <img src="{{asset('images/facebook.png')}}" style="margin-top:4px; height:50px; width:50px; margin-left:25%;" alt="facebook">
+                    <img src="{{asset('images/facebook.png')}}" style=" height:50px; width:50px; margin-left:20%;   " alt="facebook">
                 </a>
                 <a href="https://x.com/Anne67583888" class="btn btn-dark" target="_blank" style="color:#000">
-                    <img src="{{asset('images/x.png')}}" alt="Twitter" style="margin-top:10px; height:35px; width:35px; margin-left:30%;">
+                    <img src="{{asset('images/x.png')}}" alt="Twitter" style="margin-top:5px; height:35px; width:35px; margin-left:28%;">
                 </a>
                 <a href="https://www.instagram.com/annecarolinetei/" class="btn" target="_blank" style="background-image: linear-gradient(45deg, #405de6,#5851db, #833ab4, #c13584, #e1306c, #fd1d1d);  padding: 10px;">
                     <img src="{{asset('images/instagram.png')}}" alt="instagram" style="margin-top: -15px; height: 70px; width: 70px; display: block; margin-left:5%;">
