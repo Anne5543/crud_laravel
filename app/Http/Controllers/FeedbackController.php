@@ -6,12 +6,18 @@ use Illuminate\Http\Request;
 
 class FeedbackController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
+    public function feedbacksAdmin()
+{
+    $feedbacks = Feedback::all();
+    return view('feedbacks_admin', compact('feedbacks')); 
+}
+
+
     public function index()
     {
-        //
+        
+    $feedbacks = Feedback::all();
+    return view('feedbacks_admin', compact('feedbacks'));
     }
 
     /**
@@ -19,7 +25,7 @@ class FeedbackController extends Controller
      */
     public function create()
     {
-        //
+        return view('feedback.create');
     }
 
     /**
@@ -54,7 +60,8 @@ class FeedbackController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $feedback = Feedback::findOrFail($id);
+        return view('feedback.edit', compact('feedback'));
     }
 
     /**
@@ -62,7 +69,17 @@ class FeedbackController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $validatedData = $request->validate([
+            'nome' => 'required|string|max:255',
+            'telefone' => 'required|string|max:15',
+            'email' => 'required|email|max:255',
+            'comentario' => 'required|string|max:500',
+        ]);
+    
+        $feedback = Feedback::findOrFail($id);
+        $feedback->update($validatedData);
+    
+        return redirect()->route('feedback.index')->with('success', 'Feedback atualizado com sucesso!');        
     }
 
     /**
@@ -70,6 +87,10 @@ class FeedbackController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $feedback = Feedback::findOrFail($id);
+        $feedback->delete(); 
+    
+        return redirect()->route('feedbacks_admin')->with('success', 'Feedback excluído com sucesso!');
     }
 }
+

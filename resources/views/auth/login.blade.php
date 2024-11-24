@@ -1,6 +1,4 @@
 <link rel="stylesheet" href="login.css">
-<script src="./script.js"></script>
-
 
 <div class="login1">
     <form method="POST" action="{{ route('login') }}" id="loginForm">
@@ -9,7 +7,6 @@
             <h1 class="destaque">PetCharm</h1>
             <p class="destaque">Faça login para cuidar ainda melhor do seu pet! 🐾</p><br>
 
-            <!-- Email -->
             <div class="form-group">
                 <label for="email">Digite seu email:</label>
                 <input type="email" name="email" id="email" placeholder="Email" class="text" required autofocus style="height: 35px;">
@@ -18,7 +15,6 @@
                 @enderror
             </div><br>
 
-            <!-- Senha -->
             <div class="form-group">
                 <label for="password">Digite sua senha:</label>
                 <input type="password" name="password" id="password" placeholder="Senha" class="text" required style="height: 35px;"><br><br>
@@ -27,7 +23,6 @@
                 @enderror
             </div><br>
 
-            <!-- Mostrar senha -->
             <button type="button" id="mos" onclick="mostrar()" class="submit">Mostrar senha</button><br><br>
 
             <input type="submit" value="Entrar" class="submit" name="submit">
@@ -38,6 +33,20 @@
         </div>
     </form>
 
-    <!-- Imagem -->
+    <script>
+        function mostrar() {
+            var senha = document.getElementById("password"); 
+            var botao = document.getElementById("mos");
+
+            if (senha.type === "password") {
+                senha.type = "text";
+                botao.innerText = "Ocultar senha"; 
+            } else {
+                senha.type = "password"; 
+                botao.innerText = "Mostrar senha";
+            }
+        }
+    </script>
+
     <img id="img" src="{{ asset('images/pettcharm.png') }}" alt="PetCharm Logo">
 </div>

@@ -13,6 +13,7 @@
             display: flex;
             flex-direction: column;
         }
+
         .show {
             left: 0;
         }
@@ -143,7 +144,7 @@
 
 <body>
     @section('content')
-    @include('layouts.navbar_admin') 
+    @include('layouts.navbar_admin')
     <div class="container mt-5 main-content">
         <div class="row justify-content-center">
             <div class="col-sm-12 col-md-4 mb-3">
@@ -151,7 +152,7 @@
                     <div class="card-body">
                         <h5 class="card-title">Usuarios</h5>
                         <p class="card-text">Todos os Usuarios cadastrados.</p>
-                        <a href="usuarios.php" class="btn btn-primary">Ver</a>
+                        <a href="" class="btn btn-primary">Ver</a>
                     </div>
                 </div>
             </div>
@@ -160,7 +161,7 @@
                     <div class="card-body">
                         <h5 class="card-title">Agendamento de serviços</h5>
                         <p class="card-text">Todos os agendamentos.</p>
-                        <a href="agendamentos.php" class="btn btn-primary">Ver</a>
+                        <a href="{{ route('agendamentos.admin') }}" class="btn btn-primary">Ver</a>
                     </div>
                 </div>
             </div>
@@ -168,8 +169,8 @@
                 <div class="card shadow">
                     <div class="card-body">
                         <h5 class="card-title">Contatos</h5>
-                        <p class="card-text">Todos os Comentários.</p>
-                        <a href="comentarios.php" class="btn btn-primary">Ver</a>
+                        <p class="card-text">Todos os Feedbacks.</p>
+                        <a href="{{route('feedbacks_admin')}}" class="btn btn-primary">Ver</a>
                     </div>
                 </div>
             </div>

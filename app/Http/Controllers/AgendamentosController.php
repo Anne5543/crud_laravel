@@ -5,90 +5,95 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Servico;
 use App\Models\Agendamento;
+use App\Http\Requests\StoreUpdateSupport;
 
 
 class AgendamentosController extends Controller
 {
+
     public function dashboard()
     {
+        $servicos = Servico::all();
+        return view('dashboard', compact('servicos'));
+    }
+    public readonly Agendamento $agendamento;
 
-    $servicos = Servico::all(); 
-    return view('dashboard', compact('servicos'));
-
+    public function __construct()
+    {
+        $this->agendamento = new Agendamento();
     }
 
     public function index()
     {
-        //
+        $agendamentos = Agendamento::with('service')->get();
+        $agendamentos = Agendamento::all();
+
+        return view('agendamentos_admin', compact('agendamentos'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
     public function create()
     {
+        $servicos = Servico::all();
+        return view('agendamentos.create', compact('servicos'));
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
     public function store(Request $request)
     {
-    $validatedData = $request->validate([
-        'nome' => 'required|string|max:255',
-        'email' => 'required|email|max:255',
-        'telefone' => 'required|string|max:15',
-        'data' => 'required|date',
-        'hora' => 'required',
-        'especie' => 'required|string|max:255',
-        'servico' => 'required|exists:servicos,id', 
-    ]);
+        $validatedData = $request->validate([
+            'nome' => 'required|string|max:255',
+            'email' => 'required|email|max:255',
+            'telefone' => 'required|string|max:15',
+            'data' => 'required|date',
+            'hora' => 'required',
+            'especie' => 'required|string|max:255',
+            'servico' => 'required|exists:servicos,id',
+        ]);
 
-    Agendamento::create([
-        'nome' => $validatedData['nome'],
-        'email' => $validatedData['email'],
-        'telefone' => $validatedData['telefone'],
-        'data' => $validatedData['data'],
-        'hora' => $validatedData['hora'],
-        'especie' => $validatedData['especie'],
-        'id_services' => $validatedData['servico'],
-    ]);
+        Agendamento::create([
+            'nome' => $validatedData['nome'],
+            'email' => $validatedData['email'],
+            'telefone' => $validatedData['telefone'],
+            'data' => $validatedData['data'],
+            'hora' => $validatedData['hora'],
+            'especie' => $validatedData['especie'],
+            'id_services' => $validatedData['servico'],
+        ]);
 
-   
-    return redirect()->back()->with('success', 'agendamento enviado com sucesso!');
-}
 
+        return redirect()->back()->with('success', 'agendamento enviado com sucesso!');
+    }
+
+    public function show(Agendamento $agendamento)
+    {
+        $agendamentos = Agendamento::all();
+        return view('agendamentos_admin', compact('agendamentos'));
+    }
+
+    public function edit(Agendamento $agendamento)
+    {
+        $agendamentos = Agendamento::all();
+        $servicos = Servico::all();
     
-
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
-    {
-        //
+        return view('agendamentos_edit', compact('agendamento', 'servicos'));
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(string $id)
+    public function update(StoreUpdateSupport $request, string $id)
     {
-        //
+        $updated = $this->agendamento->where('id', $id)->update($request->except(['_token', '_method']));
+
+        if ($updated) {
+            return redirect()->back()->with('message', 'Agendamento atualizado com sucesso!');
+        }
+
+        return redirect()->back()->with('message', 'Erro ao atualizar agendamento.');
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, string $id)
+    public function destroy($id)
     {
-        //
-    }
+        $agendamento = Agendamento::findOrFail($id);
 
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(string $id)
-    {
-        //
+        $agendamento->delete();
+
+        return redirect()->route('agendamentos.index')->with('success', 'Agendamento excluído com sucesso!');
     }
 }

@@ -24,6 +24,13 @@ class Agendamento extends Model
     {
         return $this->belongsTo(Servico::class);
     }
+    // app/Models/Agendamento.php
+
+public function service()
+{
+    return $this->belongsTo(Servico::class, 'id_services');
+}
+
 }
 
 

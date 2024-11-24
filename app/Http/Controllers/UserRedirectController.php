@@ -7,17 +7,14 @@ class UserRedirectController extends Controller
 {
     public function redirectUser()
     {
-        // Verifica se o usuário está autenticado
         if (Auth::check()) {
-            // Verifica o tipo de usuário e redireciona
+           
             if (auth()->user()->user_type == 0) {
-                return redirect()->route('tela_admin'); // Redireciona para a área de administração
+                return redirect()->route('tela_admin');
             } elseif (auth()->user()->user_type == 1) {
-                return redirect()->route('dashboard'); // Redireciona para a dashboard do usuário comum
+                return redirect()->route('dashboard'); 
             }
         }
-
-        // Se o usuário não estiver autenticado ou não tiver um tipo válido, redireciona para login
         return redirect()->route('login');
     }
 }

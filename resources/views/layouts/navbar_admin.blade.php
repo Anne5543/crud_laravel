@@ -185,24 +185,26 @@
 
 
     <div class="l-navbar" id="nav-bar">
-        <nav class="nav">
-            <div style="margin-top: 65px;">
-                <div class="nav_list">
-                    <a href="#" class="nav_link active">
-                        <span class="nav_name">Início</span>
-                    </a>
-                    <a href="usuarios.php" class="nav_link">
-                        <span class="nav_name">Clientes</span>
-                    </a>
-                    <a href="agendamentos.php" class="nav_link">
-                        <span class="nav_name">Agendamentos</span>
-                    </a>
-                    <a href="comentarios.php" class="nav_link">
-                        <span class="nav_name">Contatos</span>
-                    </a>
-                </div>
-            </div>
-        </nav>
+    <nav class="nav">
+    <div style="margin-top: 65px;">
+        <div class="nav_list">
+            <a href="{{ route('tela_admin') }}" class="nav_link">
+                <span class="nav_name">Início</span>
+            </a>
+            <a href="" class="nav_link">
+                <span class="nav_name">Clientes</span>
+            </a>
+            <a href="{{ route('agendamentos.admin') }}" class="nav_link">
+                <span class="nav_name">Agendamentos</span>
+            </a>
+
+            <a href="{{route('feedbacks_admin')}}" class="nav_link">
+                <span class="nav_name">Feedback</span>
+            </a>
+        </div>
+    </div>
+</nav>
+
     </div>
 
 

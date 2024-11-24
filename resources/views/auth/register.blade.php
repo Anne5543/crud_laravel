@@ -1,52 +1,76 @@
-<x-guest-layout>
-    <form method="POST" action="{{ route('register') }}">
-        @csrf
+<!DOCTYPE html>
+<html lang="en">
 
-        <!-- Name -->
-        <div>
-            <x-input-label for="name" :value="__('Name')" />
-            <x-text-input id="name" class="block mt-1 w-full" type="text" name="name" :value="old('name')" required autofocus autocomplete="name" />
-            <x-input-error :messages="$errors->get('name')" class="mt-2" />
-        </div>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastro - PetCharm</title>
+    <link rel="stylesheet" href="cadastro.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <style>
+        body {
+            background-color: rgb(226, 171, 240);
+        }
+    </style>
+</head>
 
-        <!-- Email Address -->
-        <div class="mt-4">
-            <x-input-label for="email" :value="__('Email')" />
-            <x-text-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required autocomplete="username" />
-            <x-input-error :messages="$errors->get('email')" class="mt-2" />
-        </div>
+<body>
+    <div class="login">
+        <form action="{{ route('register') }}" method="post">
+            @csrf
+            <div class="formulario">
+                <h1 class="destaque">PetCharm</h1>
+                <p class="destaque">Cadastre-se para cuidar ainda melhor do seu pet! 🐾</p>
 
-        <!-- Password -->
-        <div class="mt-4">
-            <x-input-label for="password" :value="__('Password')" />
+                <div class="mb-3">
+                    <label for="name" class="form-label">Digite seu nome:</label>
+                    <input id="name" type="text" name="name" class="form-control" placeholder="Digite seu nome" required autofocus style="width: 90%; margin-left:5%">
+                    <x-input-error :messages="$errors->get('name')" class="mt-2" />
+                </div>
 
-            <x-text-input id="password" class="block mt-1 w-full"
-                            type="password"
-                            name="password"
-                            required autocomplete="new-password" />
+                <div class="mb-3">
+                    <label for="email" class="form-label">Digite seu e-mail:</label>
+                    <input id="email" type="email" name="email" class="form-control" placeholder="Digite seu e-mail" required style="width: 90%; margin-left:5%">
+                    <x-input-error :messages="$errors->get('email')" class="mt-2" />
+                </div>
 
-            <x-input-error :messages="$errors->get('password')" class="mt-2" />
-        </div>
+                <div class="mb-3">
+                    <label for="password" class="form-label">Digite sua senha:</label>
+                    <input id="password" type="password" name="password" class="form-control" placeholder="Digite sua senha" required style="width: 90%; margin-left:5%">
+                    <x-input-error :messages="$errors->get('password')" class="mt-2" />
+                </div>
 
-        <!-- Confirm Password -->
-        <div class="mt-4">
-            <x-input-label for="password_confirmation" :value="__('Confirm Password')" />
+                <div class="mb-3">
+                    <label for="password_confirmation" class="form-label">Confirme a sua senha:</label>
+                    <input id="password_confirmation" type="password" name="password_confirmation" class="form-control" placeholder="Confirme sua senha" required style="width: 90%; margin-left:5%">
+                    <x-input-error :messages="$errors->get('password_confirmation')" class="mt-2" />
+                </div>
 
-            <x-text-input id="password_confirmation" class="block mt-1 w-full"
-                            type="password"
-                            name="password_confirmation" required autocomplete="new-password" />
+                <button type="button" id="mos" onclick="mostrar()" class="submit">Mostrar senha</button><br><br>
+                <input type="submit" value="Cadastrar" class="submit" name="submit">
 
-            <x-input-error :messages="$errors->get('password_confirmation')" class="mt-2" />
-        </div>
+                <div class="links">
+                    <p class="destaque">Tem uma conta? <a href="{{ route('login') }}">Conecte-se</a></p>
+                </div>
+            </div>
+        </form>
+        <img id="img2" src="../images/petcharm.png" alt="Logo PetCharm">
+    </div>
 
-        <div class="flex items-center justify-end mt-4">
-            <a class="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" href="{{ route('login') }}">
-                {{ __('Already registered?') }}
-            </a>
+    <script>
+        function mostrar() {
+            var senha = document.getElementById("password"); 
+            var botao = document.getElementById("mos");
 
-            <x-primary-button class="ms-4">
-                {{ __('Register') }}
-            </x-primary-button>
-        </div>
-    </form>
-</x-guest-layout>
+            if (senha.type === "password") {
+                senha.type = "text";
+                botao.innerText = "Ocultar senha"; 
+            } else {
+                senha.type = "password"; 
+                botao.innerText = "Mostrar senha";
+            }
+        }
+    </script>
+</body>
+
+</html>
