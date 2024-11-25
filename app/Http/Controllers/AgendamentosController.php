@@ -5,8 +5,6 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Servico;
 use App\Models\Agendamento;
-use App\Http\Requests\StoreUpdateSupport;
-
 
 class AgendamentosController extends Controller
 {
@@ -16,7 +14,7 @@ class AgendamentosController extends Controller
         $servicos = Servico::all();
         return view('dashboard', compact('servicos'));
     }
-    public readonly Agendamento $agendamento;
+    public Agendamento $agendamento;
 
     public function __construct()
     {
@@ -26,8 +24,6 @@ class AgendamentosController extends Controller
     public function index()
     {
         $agendamentos = Agendamento::with('service')->get();
-        $agendamentos = Agendamento::all();
-
         return view('agendamentos_admin', compact('agendamentos'));
     }
 
@@ -45,8 +41,8 @@ class AgendamentosController extends Controller
             'telefone' => 'required|string|max:15',
             'data' => 'required|date',
             'hora' => 'required',
-            'especie' => 'required|string|max:255',
             'servico' => 'required|exists:servicos,id',
+            'especie' => 'required|string|max:255',
         ]);
 
         Agendamento::create([
@@ -55,8 +51,8 @@ class AgendamentosController extends Controller
             'telefone' => $validatedData['telefone'],
             'data' => $validatedData['data'],
             'hora' => $validatedData['hora'],
-            'especie' => $validatedData['especie'],
             'id_services' => $validatedData['servico'],
+            'especie' => $validatedData['especie'],
         ]);
 
 
@@ -71,22 +67,40 @@ class AgendamentosController extends Controller
 
     public function edit(Agendamento $agendamento)
     {
-        $agendamentos = Agendamento::all();
-        $servicos = Servico::all();
-    
+        $servicos = Servico::all(); // Para preencher o campo de serviços
         return view('agendamentos_edit', compact('agendamento', 'servicos'));
     }
 
-    public function update(StoreUpdateSupport $request, string $id)
+
+    public function update(Request $request, $id)
     {
-        $updated = $this->agendamento->where('id', $id)->update($request->except(['_token', '_method']));
+        $validatedData = $request->validate([
+            'nome' => 'required|string|max:255',
+            'email' => 'required|email|max:255',
+            'telefone' => 'required|string|max:15',
+            'data' => 'required|date',
+            'hora' => 'required',
+            'servico' => 'required|exists:servicos,id',
+            'especie' => 'required|string|max:255',
+        ]);
 
-        if ($updated) {
-            return redirect()->back()->with('message', 'Agendamento atualizado com sucesso!');
-        }
+        $agendamento = Agendamento::findOrFail($id);
 
-        return redirect()->back()->with('message', 'Erro ao atualizar agendamento.');
+        $agendamento->update([
+            'nome' => $validatedData['nome'],
+            'email' => $validatedData['email'],
+            'telefone' => $validatedData['telefone'],
+            'data' => $validatedData['data'],
+            'hora' => $validatedData['hora'],
+            'id_services' => $validatedData['servico'],
+            'especie' => $validatedData['especie'],
+        ]);
+
+        return redirect()->route('agendamentos.admin')->with('success', 'Agendamento atualizado com sucesso!');
     }
+
+
+
 
     public function destroy($id)
     {

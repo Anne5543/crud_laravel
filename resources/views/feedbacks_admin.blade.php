@@ -193,7 +193,6 @@
             <td>{{ $feedback->telefone }}</td>
             <td>{{ $feedback->comentario }}</td>
             <td>
-                <a href="{{ route('feedback.edit', $feedback->id) }}" class="btn btn-warning text text-white">Editar</a>
                 <form action="{{ route('feedback.destroy', $feedback->id) }}" method="POST" style="display:inline;">
                     @csrf
                     @method('DELETE')

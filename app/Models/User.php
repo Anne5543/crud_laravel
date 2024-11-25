@@ -6,11 +6,18 @@ namespace App\Models;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Http\Request;
 
 class User extends Authenticatable
 {
     use Notifiable;
+    use HasFactory, Notifiable;
+    
+    public function feedbacks()
+    {
+        return $this->hasMany(Feedback::class);
+    }
 
     protected $fillable = [
         'name', 'email', 'password', 'user_type',
@@ -37,6 +44,8 @@ class User extends Authenticatable
         $user->save();
 
         return redirect()->route('login')->with('success', 'Usuário cadastrado com sucesso!');
+
+        
     }
 }
 

@@ -8,12 +8,20 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserRedirectController;
 use App\Http\Controllers\AdminController;
 use App\Models\Agendamento;
+use App\Http\Controllers\FuncionariosController;
+use App\Http\Controllers\DashboardController;
+
 
 Route::get('/', function () {
     return view('welcome');
 });
 
 Route::get('/dashboard', [AgendamentosController::class, 'dashboard'])->middleware(['auth', 'verified'])->name('dashboard');
+
+Route::middleware(['auth'])->group(function () {
+    Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+});
+
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
@@ -59,7 +67,30 @@ Route::get('/agendamentos-admin', function () {
 Route::get('/feedbacks-admin', function () {
     return view('feedbacks_admin'); 
 })->name('feedbacks_admin');
+Route::get('/funcionarios-admin', function () {
+    return view('funcionarios_admin'); 
+})->name('funcionarios_admin');
 Route::get('/feedbacks-admin', [FeedbackController::class, 'feedbacksAdmin'])->name('feedbacks_admin');
+Route::get('/dashboard', [FeedbackController::class, 'dashboard'])->name('dashboard');
+Route::get('/feedbacks/{feedback}/edit', [FeedbackController::class, 'edit'])->name('feedbacks.edit');
+Route::put('/feedbacks/{feedback}', [FeedbackController::class, 'update'])->name('feedbacks.update');
+Route::get('agendamentos/{id}/edit', [AgendamentosController::class, 'edit'])->name('agendamentos.edit');
+Route::get('agendamentos', [AgendamentosController::class, 'index'])->name('agendamentos.index');
+Route::put('/agendamentos/{id}', [AgendamentosController::class, 'update'])->name('agendamentos.update');
+
+
+
+Route::get('/funcionarios', [FuncionariosController::class, 'funcionarios'])->name('funcionarios.admin');
+Route::get('/funcionarios/create', [FuncionariosController::class, 'create'])->name('funcionarios.create');
+Route::post('/funcionarios', [FuncionariosController::class, 'store'])->name('funcionarios.store');
+Route::get('/funcionarios/{id}', [FuncionariosController::class, 'show'])->name('funcionarios.show');
+Route::get('/funcionarios/{id}/edit', [FuncionariosController::class, 'edit'])->name('funcionarios.edit');
+Route::put('/funcionarios/{id}', [FuncionariosController::class, 'update'])->name('funcionarios.update');
+Route::delete('/funcionarios/{id}', [FuncionariosController::class, 'destroy'])->name('funcionarios.destroy');
+
+Route::get('/funcionarios', [FuncionariosController::class, 'funcionarios'])->name('funcionarios_admin');
+
+
 
 
 

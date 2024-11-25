@@ -199,7 +199,7 @@
                             <td>{{ $agendamento->service->nome }}</td>
                             <td>{{ $agendamento->especie }}</td>
                             <td>
-                                <a href="{{ route('agendamentos.edit', ['agendamento' => $agendamento->id]) }}" class="btn btn-warning text text-white">Editar</a>
+                                <a href="{{ route('agendamentos.edit', $agendamento->id) }}" class="btn btn-warning text text-white">Editar</a>
 
                                 <form action="{{ route('agendamentos.destroy', ['agendamento' => $agendamento->id]) }}" method="POST" style="display:inline;">
                                     @csrf

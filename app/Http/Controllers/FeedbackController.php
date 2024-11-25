@@ -1,23 +1,41 @@
 <?php
 
 namespace App\Http\Controllers;
+
 use App\Models\Feedback;
 use Illuminate\Http\Request;
+use App\Models\Servico;
+
+use Illuminate\Support\Facades\Auth;
+
 
 class FeedbackController extends Controller
 {
     public function feedbacksAdmin()
-{
-    $feedbacks = Feedback::all();
-    return view('feedbacks_admin', compact('feedbacks')); 
-}
+    {
+        $feedbacks = Feedback::all();
+        return view('feedbacks_admin', compact('feedbacks'));
+    }
+    public function dashboard()
+    {
+        $servicos = Servico::all();
+        $feedbacks = Feedback::all();
+        if (Auth::check()) {
+            $feedbacks = Auth::user()->feedbacks;
+        } else {
+            return redirect()->route('login');
+        }
+        return view('dashboard', compact('servicos', 'feedbacks'));
+    }
+
+
 
 
     public function index()
     {
-        
-    $feedbacks = Feedback::all();
-    return view('feedbacks_admin', compact('feedbacks'));
+
+        $feedbacks = Feedback::all();
+        return view('feedbacks_admin', compact('feedbacks'));
     }
 
     /**
@@ -33,18 +51,18 @@ class FeedbackController extends Controller
      */
     public function store(Request $request)
     {
-      
-            $validatedData = $request->validate([
-                'nome' => 'required|string|max:255',
-                'telefone' => 'required|string|max:15',
-                'email' => 'required|email|max:255',
-                'comentario' => 'required|string|max:500',
-            ]);
-    
-            Feedback::create($validatedData);
-    
-            return redirect()->back()->with('success', 'Comentário enviado com sucesso!');
-       
+
+        $validatedData = $request->validate([
+            'nome' => 'required|string|max:255',
+            'telefone' => 'required|string|max:15',
+            'email' => 'required|email|max:255',
+            'comentario' => 'required|string|max:500',
+        ]);
+
+        $validatedData['user_id'] = auth()->user()->id;
+        Feedback::create($validatedData);
+
+        return redirect()->back()->with('success', 'Comentário enviado com sucesso!');
     }
 
     /**
@@ -61,25 +79,29 @@ class FeedbackController extends Controller
     public function edit(string $id)
     {
         $feedback = Feedback::findOrFail($id);
-        return view('feedback.edit', compact('feedback'));
+        return view('dashboard', compact('feedback'));
     }
+
 
     /**
      * Update the specified resource in storage.
      */
     public function update(Request $request, string $id)
     {
+        $feedback = Feedback::findOrFail($id);
+
         $validatedData = $request->validate([
             'nome' => 'required|string|max:255',
             'telefone' => 'required|string|max:15',
             'email' => 'required|email|max:255',
             'comentario' => 'required|string|max:500',
         ]);
-    
-        $feedback = Feedback::findOrFail($id);
+
+        $validatedData['user_id'] = auth()->user()->id;
+
         $feedback->update($validatedData);
-    
-        return redirect()->route('feedback.index')->with('success', 'Feedback atualizado com sucesso!');        
+
+        return redirect()->route('dashboard')->with('success', 'Feedback atualizado com sucesso!');
     }
 
     /**
@@ -88,9 +110,8 @@ class FeedbackController extends Controller
     public function destroy(string $id)
     {
         $feedback = Feedback::findOrFail($id);
-        $feedback->delete(); 
-    
+        $feedback->delete();
+
         return redirect()->route('feedbacks_admin')->with('success', 'Feedback excluído com sucesso!');
     }
 }
-

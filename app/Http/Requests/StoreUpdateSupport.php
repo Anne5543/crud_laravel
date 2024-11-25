@@ -6,7 +6,9 @@ use Illuminate\Foundation\Http\FormRequest;
 
 class StoreUpdateSupport extends FormRequest
 {
-    
+    /**
+     * Determine if the user is authorized to make this request.
+     */
     public function authorize(): bool
     {
         return true;
@@ -19,16 +21,13 @@ class StoreUpdateSupport extends FormRequest
      */
     public function rules(): array
     {
-      
-    return [
-        'nome' => 'required|string|max:255', 
-        'email' => 'required|email|unique:agendamentos,email', 
-        'telefone' => 'required|string|max:15',
-        'data' => 'required|date', 
-        'hora' => 'required|date_format:H:i',
-        'id_service' => 'required|exists:services,id',
-        'especie' => 'required|string|max:100',
-    ];
-}
-
+        return
+            [
+                'nome' => 'required|string|max:40',
+                'email' => 'required|email|max:45',
+                'idade' => 'required|integer',
+                'nivel_escolar' => 'required|string|max:255',
+                'telefone' => 'required|string|max:15',
+            ];
+    }
 }

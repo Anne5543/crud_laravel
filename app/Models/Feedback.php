@@ -1,4 +1,4 @@
-<?php
+<?php 
 
 namespace App\Models;
 
@@ -9,8 +9,12 @@ class Feedback extends Model
 {
     use HasFactory;
 
-    protected $fillable = [
-       'id', 'nome', 'email', 'telefone', 'comentario',
-    ];
+    protected $fillable = ['nome', 'telefone', 'email', 'comentario', 'user_id'];
+
+   
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 }
 

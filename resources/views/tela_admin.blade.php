@@ -150,9 +150,9 @@
             <div class="col-sm-12 col-md-4 mb-3">
                 <div class="card shadow">
                     <div class="card-body">
-                        <h5 class="card-title">Usuarios</h5>
-                        <p class="card-text">Todos os Usuarios cadastrados.</p>
-                        <a href="" class="btn btn-primary">Ver</a>
+                        <h5 class="card-title">Funcionarios</h5>
+                        <p class="card-text">Todos os funcionarios cadastrados.</p>
+                        <a href="{{route('funcionarios_admin')}}" class="btn btn-primary">Ver</a>
                     </div>
                 </div>
             </div>

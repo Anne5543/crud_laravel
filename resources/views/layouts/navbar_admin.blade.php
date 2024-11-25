@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -129,23 +130,57 @@
             cursor: pointer;
             transition: background-color 0.3s ease, transform 0.2s ease;
             text-decoration: none;
-            
+
+        }
+
+        @media (max-width: 768px) {
+            .main-content {
+                margin-left: 0;
+                width: 100%;
+                padding-top: 80px;
+            }
+
+            .l-navbar {
+                width: 50%;
+                left: -100%;
+            }
+
+            .l-navbar.show {
+                left: 0;
+            }
+            .table-responsive-sm {
+                overflow-x: auto;
+            }
+            .table td,
+            .table th {
+                padding: 0.3rem;
+            }
+            .footer-table-container {
+                width: 100%;
+                height: auto;
+            }
+
+            .table-container {
+                overflow-x: auto;
+            }
+
         }
     </style>
 </head>
+
 <body>
-<header class="header" id="header">
+    <header class="header" id="header">
         <div class="header_toggle">
             <i class='bi bi-list' id="header-toggle"></i>
             <img src="{{ asset('images/logo.png') }}" id="logo" alt="logo" class="nav-logo" style="height: 60px; width:160px;">
-            
+
             @if (Auth::check())
             <div class="nav_link dropdown" style="margin-left: 420%; margin-bottom: -5px;">
                 <button class="dropdown_toggle" id="userDropdown">
                     <span class="nav_name">{{ Auth::user()->name }}</span>
                     <i class='bi bi-chevron-down'></i>
                 </button>
-                <ul class="dropdown_menu" id="dropdownMenu" >
+                <ul class="dropdown_menu" id="dropdownMenu">
                     <li><a href="{{ route('profile.edit') }}" class="hover:text-gray-300">Perfil</a></li>
                     <li>
                         <form method="POST" action="{{ route('logout') }}">
@@ -156,7 +191,6 @@
                 </ul>
             </div>
             @else
-            <!-- Opção para usuários não logados -->
             <a href="{{ route('login') }}" class="nav_link">
                 <span class="nav_name">Login</span>
             </a>
@@ -185,29 +219,30 @@
 
 
     <div class="l-navbar" id="nav-bar">
-    <nav class="nav">
-    <div style="margin-top: 65px;">
-        <div class="nav_list">
-            <a href="{{ route('tela_admin') }}" class="nav_link">
-                <span class="nav_name">Início</span>
-            </a>
-            <a href="" class="nav_link">
-                <span class="nav_name">Clientes</span>
-            </a>
-            <a href="{{ route('agendamentos.admin') }}" class="nav_link">
-                <span class="nav_name">Agendamentos</span>
-            </a>
+        <nav class="nav">
+            <div style="margin-top: 65px;">
+                <div class="nav_list">
+                    <a href="{{ route('tela_admin') }}" class="nav_link">
+                        <span class="nav_name">Início</span>
+                    </a>
+                    <a href="{{route('funcionarios_admin')}}" class="nav_link">
+                        <span class="nav_name">Funcionarios</span>
+                    </a>
+                    <a href="{{ route('agendamentos.admin') }}" class="nav_link">
+                        <span class="nav_name">Agendamentos</span>
+                    </a>
 
-            <a href="{{route('feedbacks_admin')}}" class="nav_link">
-                <span class="nav_name">Feedback</span>
-            </a>
-        </div>
-    </div>
-</nav>
+                    <a href="{{route('feedbacks_admin')}}" class="nav_link">
+                        <span class="nav_name">Feedback</span>
+                    </a>
+                </div>
+            </div>
+        </nav>
 
     </div>
 
 
 
 </body>
+
 </html>

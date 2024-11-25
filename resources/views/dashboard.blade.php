@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,16 +8,17 @@
     <link rel="stylesheet" href="style.css">
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-    
+
 </head>
+
 <body class="font-sans bg-gray-100">
     @section('content')
-    @include('layouts.navigation') 
-    
-    <div  id="inicio">
+    @include('layouts.navigation')
+
+    <div id="inicio">
         <img src="{{ asset('images/banner.png') }}" alt="Banner" class="banner">
     </div>
-    
+
     <div id="sobre">
         <section class="container my-5">
             <div class="row align-items-center">
@@ -25,27 +27,27 @@
                 </div>
                 <div class="col-md-6">
                     <h1 class="display-4"><strong style="font-size:40px">PetCharm</strong></h1>
-                    <p class="lead"  style="text-align:justify">Somos o PetCharm, e nos dedicados ao bem-estar e felicidade dos animais de estimação. Oferecemos uma ampla gama de serviços personalizados, incluindo grooming profissional, adestramento, consultas e entre outros.</p>
+                    <p class="lead" style="text-align:justify">Somos o PetCharm, e nos dedicados ao bem-estar e felicidade dos animais de estimação. Oferecemos uma ampla gama de serviços personalizados, incluindo grooming profissional, adestramento, consultas e entre outros.</p>
                 </div>
             </div>
             <div class="row my-5">
-                <div class="col-md-6" >
+                <div class="col-md-6">
                     <h2 class="display-4"><strong style="font-size:40px">O que nos diferencia</strong></h2>
                     <ul class="list-unstyled">
-                        <li class="lead"  style="text-align:justify; font-size:17px">🐾 Compromisso com o bem-estar animal</li>
-                        <li class="lead"  style="text-align:justify; font-size:17px">🐾 Qualidade garantida</li>
-                        <li class="lead"  style="text-align:justify; font-size:17px">🐾Preços que cabem no seu bolso</li>
+                        <li class="lead" style="text-align:justify; font-size:17px">🐾 Compromisso com o bem-estar animal</li>
+                        <li class="lead" style="text-align:justify; font-size:17px">🐾 Qualidade garantida</li>
+                        <li class="lead" style="text-align:justify; font-size:17px">🐾Preços que cabem no seu bolso</li>
                     </ul>
                 </div>
                 <div class="col-md-6">
                     <h2 class="display-4" style="text-align:center;"><strong style="font-size:40px">Nossa Missão</strong></h2>
-                    <p class="lead"  style="text-align:justify; font-size:17px">Nosso objetivo é proporcionar uma experiência acolhedora e amigável para você e seus pets. Visite-nos e faça parte da nossa jornada de cuidado e amor pelos animais de estimação.</p>
+                    <p class="lead" style="text-align:justify; font-size:17px">Nosso objetivo é proporcionar uma experiência acolhedora e amigável para você e seus pets. Visite-nos e faça parte da nossa jornada de cuidado e amor pelos animais de estimação.</p>
                 </div>
             </div>
         </section>
     </div>
 
-    
+
     <div id="serviços" class="container">
         <h1 style="margin-bottom:-60px; text-align: center;">Serviços</h1>
         <div class="row row-cols-1 row-cols-md-3 g-3">
@@ -54,7 +56,7 @@
                     <img class="card-img-top" src="./images/banho.png" alt="Card image">
                     <div class="card-body">
                         <h4 class="card-title">Banhos <span style="margin-left: 185px">R$ 25,00</span></h4>
-                        <p class="card-text" > Oferecemos banhos completos com produtos de alta qualidade, garantindo higiene e bem-estar para seu pet.</p>
+                        <p class="card-text"> Oferecemos banhos completos com produtos de alta qualidade, garantindo higiene e bem-estar para seu pet.</p>
                     </div>
                 </div>
             </div>
@@ -83,7 +85,7 @@
                     <img class="card-img-top" src="./images/adestramento.jpg" alt="Card image">
                     <div class="card-body">
                         <h4 class="card-title">Adestramento <span style="margin-left: 20px">R$ 90,00(Sessão)</span></h4>
-                        <p class="card-text"  style="text-align:justify;">Oferecemos serviços de adestramento dedicados a promover uma convivência harmoniosa entre você e seu animal de estimação.</p>
+                        <p class="card-text" style="text-align:justify;">Oferecemos serviços de adestramento dedicados a promover uma convivência harmoniosa entre você e seu animal de estimação.</p>
                     </div>
                 </div>
             </div>
@@ -138,7 +140,7 @@
                 <div class="col">
                     <div class="mb-3">
                         <label for="data" class="form-label">Data<span style="color: red;">*</span></label>
-                        <input type="date" name="data" class="form-control" id="data"required>
+                        <input type="date" name="data" class="form-control" id="data" required>
                     </div>
                 </div>
                 <div class="col">
@@ -148,16 +150,16 @@
                     </div>
                 </div>
                 <div class="mb-3">
-                <label for="especie" class="form-label">Espécie do Animal<span style="color: red;">*</span></label>
-                <input type="text" name="especie" class="form-control" id="especie" placeholder="Espécie do Animal" required>
-            </div>
+                    <label for="especie" class="form-label">Espécie do Animal<span style="color: red;">*</span></label>
+                    <input type="text" name="especie" class="form-control" id="especie" placeholder="Espécie do Animal" required>
+                </div>
             </div>
             <div class="mb-3">
                 <label for="servico" class="form-label">Serviço<span style="color: red;">*</span></label>
                 <select class="form-select" id="servico" name="servico" required>
                     <option value="" disabled selected>Selecione um serviço</option>
                     @foreach ($servicos as $servico)
-                        <option value="{{ $servico->id }}">{{ $servico->nome }}</option>
+                    <option value="{{ $servico->id }}">{{ $servico->nome }}</option>
                     @endforeach
                 </select>
 
@@ -166,43 +168,43 @@
             <button type="submit" class="btn btn-primary btn-block">AGENDAR</button>
         </form>
     </div>
-    
-    <div id="contatos" style="margin-top: 50px;">
-            <div id="forcon" class="container">
-                <div id="cont">
-                    <h1>FALE CONOSCO</h1>
-                    <p>Para entrar em contato com a nossa equipe, por favor, preencha o formulário abaixo.</p>
-                    <form action="{{ route('feedback.store') }}" method="post">
-                        @csrf
-                        <label style="font-size: 18px;"><strong>Nome: <span style="color: red;">*</span></strong></label><br>
-                        <input type="text" name="nome"  placeholder="Digite seu nome"><br> 
-                        <label style="font-size: 18px;"><strong>Telefone: <span style="color: red;">*</span></strong></label><br>
-                        <input type="tel" name="telefone" class="form-control" id="telefone" onkeypress="$(this).mask('(00) 0000-0000')" placeholder="(00) 0000-0000" required>
-                        <label style="font-size: 18px;"><strong>Email: <span style="color: red;">*</span></strong></label><br>
-                        <input type="email" name="email" class="form-control" id="email" placeholder="Digite seu email" required>
-                        <label style="font-size: 18px;"><strong>Seu Comentário: <span style="color: red;">*</span></strong></label><br>
-                        <input type="text" name="comentario" placeholder="Digite seu Comentário"><br>
-                        <input  class="btn btn-primary" type="submit" value="ENVIAR" style=" width: 120px;"></input>
-                    </form>
-                    @if(session('success'))
-                        <div class="alert alert-success">
-                            {{ session('success') }}
-                        </div>
-                    @endif
-                </div>
 
-                <div id="formasc">
-                    <h2>Formas de contato</h2>
-                    <h5>EMAIL:</h5>
-                    <p>anne.brandao@aluno.ce.gov.br</p>
-                    <h5>TELEFONE:</h5>
-                    <p>(88)9 1234-5678</p>
-                    <h5>LOCALIZAÇÃO:</h5>
-                    <p>Bairro nossa senhora de fátima, Russas-CE</p>
-                </div>
+    <div id="contatos" style="margin-top: 50px;">
+        <div id="forcon" class="container">
+            <div id="cont">
+                <h1>FALE CONOSCO</h1>
+                <p>Para entrar em contato com a nossa equipe, por favor, preencha o formulário abaixo.</p>
+                <form action="{{ route('feedback.store') }}" method="post">
+                    @csrf
+                    <label style="font-size: 18px;"><strong>Nome: <span style="color: red;">*</span></strong></label><br>
+                    <input type="text" name="nome" placeholder="Digite seu nome"><br>
+                    <label style="font-size: 18px;"><strong>Telefone: <span style="color: red;">*</span></strong></label><br>
+                    <input type="tel" name="telefone" class="form-control" id="telefone" onkeypress="$(this).mask('(00) 0000-0000')" placeholder="(00) 0000-0000" required>
+                    <label style="font-size: 18px;"><strong>Email: <span style="color: red;">*</span></strong></label><br>
+                    <input type="email" name="email" class="form-control" id="email" placeholder="Digite seu email" required>
+                    <label style="font-size: 18px;"><strong>Seu Comentário: <span style="color: red;">*</span></strong></label><br>
+                    <input type="text" name="comentario" placeholder="Digite seu Comentário"><br>
+                    <input class="btn btn-primary" type="submit" value="ENVIAR" style=" width: 120px;"></input>
+                </form>
+    <a href="" class="btn-icon" data-bs-toggle="modal" data-bs-target="#feedbackModal">
+        <img src="{{ asset('images/feedbacks.png') }}" style="height:40px; width:40px; margin-left:25%; margin-top:-50px;" alt="feedback">
+    </a>
+
+
             </div>
 
-            
+            <div id="formasc">
+                <h2>Formas de contato</h2>
+                <h5>EMAIL:</h5>
+                <p>anne.brandao@aluno.ce.gov.br</p>
+                <h5>TELEFONE:</h5>
+                <p>(88)9 1234-5678</p>
+                <h5>LOCALIZAÇÃO:</h5>
+                <p>Bairro nossa senhora de fátima, Russas-CE</p>
+            </div>
+        </div>
+
+
         <footer class="foo1">
             <div class="container text-center mt-5">
                 <a href="https://www.facebook.com/annecarolineteixeira.brandao.5?locale=pt_BR" class="btn btn-primary btn-icon btn-facebook" target="_blank">
@@ -215,14 +217,99 @@
                     <img src="{{asset('images/instagram.png')}}" alt="instagram" style="margin-top: -15px; height: 70px; width: 70px; display: block; margin-left:5%;">
                 </a>
             </div>
+    </div>
+    </footer>
+    <footer class="foo2">
+        <p>&copy;2024. Todos os direitos reservados.</p>
+    </footer>
+
+
+    <div>
+        <div class="modal fade" id="feedbackModal" tabindex="-1" aria-labelledby="feedbackModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="feedbackModalLabel">Feedbacks Enviados</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        @if(isset($feedbacks) && $feedbacks->isNotEmpty())
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th>Comentário</th>
+                                    <th>Ações</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach ($feedbacks as $feedback)
+                                <tr>
+                                    <td>{{ $loop->iteration }}</td>
+                                    <td>{{ $feedback->comentario }}</td>
+                                    <td>
+                                    <a href="#" class="btn btn-warning text text-white" data-bs-toggle="modal" data-bs-target="#editFeedbackModal{{ $feedback->id }}" style="height:38px">Editar</a>
+                                    </td>
+                                </tr>
+                                @endforeach
+                            </tbody>
+                        </table>
+                        @else
+                        <p>Nenhum feedback encontrado.</p>
+                        @endif
+
+                    </div>
+                    
+                </div>
+            </div>
         </div>
-        </footer>
-        <footer class="foo2">
-            <p>&copy;2024. Todos os direitos reservados.</p>
-        </footer>
-    
+        @foreach ($feedbacks as $feedback)
+    <div class="modal fade" id="editFeedbackModal{{ $feedback->id }}" tabindex="-1" aria-labelledby="editFeedbackModalLabel{{ $feedback->id }}" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="editFeedbackModalLabel{{ $feedback->id }}">Editar Feedback</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form action="{{ route('feedbacks.update', $feedback->id) }}" method="POST">
+                        @csrf
+                        @method('PUT')
+
+                        <div class="mb-3">
+                            <label for="nome" class="form-label">Nome</label>
+                            <input type="text" class="form-control" name="nome" id="nome" value="{{ $feedback->nome }}" required>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="telefone" class="form-label">Telefone</label>
+                            <input type="tel" class="form-control" name="telefone" id="telefone" value="{{ $feedback->telefone }}" required>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="email" class="form-label">Email</label>
+                            <input type="email" class="form-control" name="email" id="email" value="{{ $feedback->email }}" required>
+                        </div>
+
+
+                        <div class="mb-3">
+                            <label for="comentario" class="form-label">Comentário</label>
+                            <textarea class="form-control" name="comentario" id="comentario" rows="4" required>{{ $feedback->comentario }}</textarea>
+                        </div>
+
+
+                        <button type="submit" class="btn btn-primary">Salvar Alterações</button>
+                        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancelar</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+@endforeach
+
 
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
     </div>
 </body>
+
 </html>

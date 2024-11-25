@@ -145,9 +145,9 @@
                             <h2>Editar Agendamento</h2>
                         </div>
                         <div class="card-body">
-                            <form action="{{ route('agendamentos.update', ['agendamento' => $agendamento->id])}}" method="POST">
-                                @csrf
-                                <input type="hidden" name="_method" value="PUT">
+                            <form action="{{ route('agendamentos.update',$agendamento->id)}}" method="POST">
+                            @csrf
+                            @method('PUT')
                                 <div class="row">
                                     <div class="col">
                                         <div class="mb-3">
