@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StoreUpdateSupport;
 use Illuminate\Http\Request;
 use App\Models\Funcionario;
 
@@ -23,7 +24,7 @@ class FuncionariosController extends Controller
         return view('funcionarios_create');
     }
 
-    public function store(Request $request)
+    public function store(StoreUpdateSupport $request)
     {
         $created = $this ->funcionario->create([
             'nome' => $request->input('nome'),
@@ -48,7 +49,7 @@ class FuncionariosController extends Controller
         return view('funcionarios_edit', compact('funcionario'));
     }
 
-    public function update(Request $request, $id)
+    public function update(StoreUpdateSupport $request, $id)
     {
         $updated = $this-> funcionario->where('id', $id) -> update($request->except(['_token', '_method']));
     

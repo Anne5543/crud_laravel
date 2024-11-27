@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StoreUpdateFeedback;
+use App\Http\Requests\StoreUpdateSupport;
 use App\Models\Feedback;
 use Illuminate\Http\Request;
 use App\Models\Servico;
@@ -28,9 +30,6 @@ class FeedbackController extends Controller
         return view('dashboard', compact('servicos', 'feedbacks'));
     }
 
-
-
-
     public function index()
     {
 
@@ -38,24 +37,18 @@ class FeedbackController extends Controller
         return view('feedbacks_admin', compact('feedbacks'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
     public function create()
     {
         return view('feedback.create');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
+    public function store(StoreUpdateFeedback $request)
     {
 
         $validatedData = $request->validate([
-            'nome' => 'required|string|max:255',
+            'nome' => 'required|string|max:40',
             'telefone' => 'required|string|max:15',
-            'email' => 'required|email|max:255',
+            'email' => 'required|email|max:50',
             'comentario' => 'required|string|max:500',
         ]);
 
@@ -65,17 +58,11 @@ class FeedbackController extends Controller
         return redirect()->back()->with('success', 'Comentário enviado com sucesso!');
     }
 
-    /**
-     * Display the specified resource.
-     */
     public function show(string $id)
     {
         //
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
     public function edit(string $id)
     {
         $feedback = Feedback::findOrFail($id);
@@ -83,10 +70,7 @@ class FeedbackController extends Controller
     }
 
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, string $id)
+    public function update(StoreUpdateFeedback $request, string $id)
     {
         $feedback = Feedback::findOrFail($id);
 
@@ -104,9 +88,6 @@ class FeedbackController extends Controller
         return redirect()->route('dashboard')->with('success', 'Feedback atualizado com sucesso!');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
     public function destroy(string $id)
     {
         $feedback = Feedback::findOrFail($id);

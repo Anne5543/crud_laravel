@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StoreUpdateAgendamentos;
 use Illuminate\Http\Request;
 use App\Models\Servico;
 use App\Models\Agendamento;
@@ -14,6 +15,7 @@ class AgendamentosController extends Controller
         $servicos = Servico::all();
         return view('dashboard', compact('servicos'));
     }
+    
     public Agendamento $agendamento;
 
     public function __construct()
@@ -23,9 +25,14 @@ class AgendamentosController extends Controller
 
     public function index()
     {
-        $agendamentos = Agendamento::with('service')->get();
-        return view('agendamentos_admin', compact('agendamentos'));
-    }
+
+    $servicos = Servico::all(); 
+    $agendamentos = Agendamento::with('service')->get();
+
+    return view('agendamentos_admin', compact('servicos', 'agendamentos'));
+}
+
+    
 
     public function create()
     {
@@ -33,16 +40,16 @@ class AgendamentosController extends Controller
         return view('agendamentos.create', compact('servicos'));
     }
 
-    public function store(Request $request)
+    public function store(StoreUpdateAgendamentos $request)
     {
         $validatedData = $request->validate([
-            'nome' => 'required|string|max:255',
-            'email' => 'required|email|max:255',
+            'nome' => 'required|string|max:40',
+            'email' => 'required|email|max:50',
             'telefone' => 'required|string|max:15',
             'data' => 'required|date',
             'hora' => 'required',
             'servico' => 'required|exists:servicos,id',
-            'especie' => 'required|string|max:255',
+            'especie' => 'required|string|max:20',
         ]);
 
         Agendamento::create([
@@ -56,7 +63,7 @@ class AgendamentosController extends Controller
         ]);
 
 
-        return redirect()->back()->with('success', 'agendamento enviado com sucesso!');
+        return redirect()->route('dashboard')->with('success', 'Agendamento enviado com sucesso!');
     }
 
     public function show(Agendamento $agendamento)
@@ -67,7 +74,7 @@ class AgendamentosController extends Controller
 
     public function edit(Agendamento $agendamento)
     {
-        $servicos = Servico::all(); // Para preencher o campo de serviços
+        $servicos = Servico::all();
         return view('agendamentos_edit', compact('agendamento', 'servicos'));
     }
 
@@ -75,13 +82,13 @@ class AgendamentosController extends Controller
     public function update(Request $request, $id)
     {
         $validatedData = $request->validate([
-            'nome' => 'required|string|max:255',
-            'email' => 'required|email|max:255',
+            'nome' => 'required|string|max:40',
+            'email' => 'required|email|max:50',
             'telefone' => 'required|string|max:15',
             'data' => 'required|date',
             'hora' => 'required',
             'servico' => 'required|exists:servicos,id',
-            'especie' => 'required|string|max:255',
+            'especie' => 'required|string|max:20',
         ]);
 
         $agendamento = Agendamento::findOrFail($id);

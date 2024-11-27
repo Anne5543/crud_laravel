@@ -10,6 +10,11 @@
 
 @section('content')
 @include('layouts.navbar_admin')
+@if($errors->any())
+    @foreach($errors->all() as $error
+        {{$error}})
+    @endforeach
+@endif
 
 <h3 style="padding-top: 140px; margin-left:20% ">Criar Funcionários</h3>
 <div class="main-content" style="padding-top: 70px; margin-left:200px;">
@@ -44,7 +49,7 @@
                                 <div class="col">
                                     <div class="mb-3">
                                         <label for="idade" class="form-label">Idade:</label>
-                                        <input type="number" name="idade" class="form-control" id="idade" required>
+                                        <input type="number" name="idade" class="form-control" id="idade" required placeholder="Idade">
                                     </div>
                                 </div>
                                 <div class="col">

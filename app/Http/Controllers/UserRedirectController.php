@@ -8,7 +8,6 @@ class UserRedirectController extends Controller
     public function redirectUser()
     {
         if (Auth::check()) {
-           
             if (auth()->user()->user_type == 0) {
                 return redirect()->route('tela_admin');
             } elseif (auth()->user()->user_type == 1) {
