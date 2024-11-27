@@ -7,8 +7,6 @@
     <title>Document</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <style>
-        
-
         .main-content {
             margin-top: 90px;
             padding: 1rem;
@@ -157,7 +155,12 @@
  
         <h3 style="padding-top: 140px; margin-left:20%">Gerenciamento de Funcionários</h3>
         <a href="{{ route('funcionarios.create') }}" class="btn btn-primary" style="margin-left:80%; margin-top:-70px">Criar funcionario</a>
-      
+        @if (session('success'))
+            <div class="alert alert-success alert-dismissible fade show" role="alert" style="position: absolute; top: 80px; left: 50%; transform: translateX(-50%); width: 90%; z-index: 1000; display: block;">
+                {{ session('success') }}
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        @endif
 
     
 

@@ -55,7 +55,7 @@ class FeedbackController extends Controller
         $validatedData['user_id'] = auth()->user()->id;
         Feedback::create($validatedData);
 
-        return redirect()->back()->with('success', 'Comentário enviado com sucesso!');
+        return redirect()->back()->with('success', 'Feedback enviado com sucesso!');
     }
 
     public function show(string $id)

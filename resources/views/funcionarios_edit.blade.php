@@ -64,6 +64,12 @@
                                 <a href="{{ route('funcionarios_admin') }}" class="btn btn-danger btn-lg" style="width: 200px;">Cancelar</a>
                             </div>
                         </form>
+
+                        @if ($errors -> any())
+                            @foreach($errors->all() as $error)
+                                {{$error}}
+                            @endforeach
+                        @endif
                     </div>
                 </div>
             </div>

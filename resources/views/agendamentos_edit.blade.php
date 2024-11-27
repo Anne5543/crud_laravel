@@ -136,19 +136,20 @@
     @section('content')
     @include('layouts.navbar_admin')
 
-    <div class="main-content">
-        <div class="container mt-2">
-            <div class="row">
-                <div class="col-md-8 mx-auto">
-                    <div class="card shadow">
-                        <div style="text-align: center; margin-bottom:10px">
-                            <h2>Editar Agendamento</h2>
-                        </div>
-                        <div class="card-body">
-                            <form action="{{ route('agendamentos.update',$agendamento->id)}}" method="POST">
+    <h3 style="padding-top: 140px; margin-left:20% ">Editar agendamento</h3>
+    <div class="main-content" style="padding-top: 15px; margin-left:200px;">
+    <div class="container mt-2">
+        <div class="row">
+            <div class="col-md-8 mx-auto">
+                <div class="card shadow">
+                    <div style="text-align: center; margin-bottom: 10px;">
+                        <h2>Editar agendamento</h2>
+                    </div>
+                    <div class="card-body">
+                        <form action="{{ route('agendamentos.update', $agendamento->id) }}" method="POST">
                             @csrf
                             @method('PUT')
-                                <div class="row">
+                            <div class="row">
                                     <div class="col">
                                         <div class="mb-3">
                                             <label for="nome" class="form-label">Nome:</label>
@@ -204,13 +205,21 @@
                                     <button type="submit" class="btn btn-primary btn-lg me-3" style="width: 200px;">Salvar Alterações</button>
                                     <a href="{{ route('agendamentos.admin') }}" class="btn btn-danger btn-lg" style="width: 200px;">Cancelar</a>
                                 </div>
-                            </form>
-                        </div>
+                        </form>
+
+                        @if ($errors -> any())
+                            @foreach($errors->all() as $error)
+                                {{$error}}
+                            @endforeach
+                        @endif
                     </div>
                 </div>
             </div>
         </div>
     </div>
+</div>
+
+
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 </body>

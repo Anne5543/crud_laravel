@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreUpdateAgendamentos;
+use App\Http\Requests\StoreUpdateSupport;
 use Illuminate\Http\Request;
 use App\Models\Servico;
 use App\Models\Agendamento;
@@ -79,7 +80,7 @@ class AgendamentosController extends Controller
     }
 
 
-    public function update(Request $request, $id)
+    public function update(StoreUpdateAgendamentos $request, $id)
     {
         $validatedData = $request->validate([
             'nome' => 'required|string|max:40',

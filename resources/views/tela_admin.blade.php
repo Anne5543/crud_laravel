@@ -168,7 +168,7 @@
             <div class="col-sm-12 col-md-4 mb-3">
                 <div class="card shadow">
                     <div class="card-body">
-                        <h5 class="card-title">Contatos</h5>
+                        <h5 class="card-title">Feedback</h5>
                         <p class="card-text">Todos os Feedbacks.</p>
                         <a href="{{route('feedbacks_admin')}}" class="btn btn-primary">Ver</a>
                     </div>

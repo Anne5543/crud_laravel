@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="style.css">
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+   
 
 </head>
 
@@ -15,9 +16,15 @@
     @section('content')
     @include('layouts.navigation')
 
-    <div id="inicio">
-        <img src="{{ asset('images/banner.png') }}" alt="Banner" class="banner">
-    </div>
+    <div id="inicio" style="position: relative;">
+    <img src="{{ asset('images/banner.png') }}" alt="Banner" class="banner">
+    @if (session('success'))
+        <div class="alert alert-success alert-dismissible fade show" role="alert" style="position: absolute; top: 70px; left: 50%; transform: translateX(-50%); width: 90%; z-index: 1000; display: block;">
+            {{ session('success') }}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    @endif
+</div>
 
     <div id="sobre">
         <section class="container my-5">
@@ -114,6 +121,7 @@
         <div style="text-align: center;">
             <p><strong> Funcionamos de segunda a sábado/ De 8:00 h às 18:00h</strong></p>
         </div>
+        
         <form action="{{ route('agendamentos.store') }}" method="post" style="max-width: 400px; margin: 0 auto; border: 1px solid #ced4da; padding: 20px; border-radius: 10px;">
             @csrf
             <div class="row">
@@ -167,6 +175,12 @@
 
             <button type="submit" class="btn btn-primary btn-block">AGENDAR</button>
         </form>
+
+        @if ($errors -> any())
+            @foreach($errors->all() as $error)
+                {{$error}}
+            @endforeach
+        @endif
     </div>
 
     <div id="contatos" style="margin-top: 50px;">
@@ -189,6 +203,11 @@
     <a href="" class="btn-icon" data-bs-toggle="modal" data-bs-target="#feedbackModal">
         <img src="{{ asset('images/feedbacks.png') }}" style="height:40px; width:40px; margin-left:25%; margin-top:-50px;" alt="feedback">
     </a>
+    @if ($errors -> any())
+            @foreach($errors->all() as $error)
+                {{$error}}
+            @endforeach
+    @endif
 
 
             </div>
@@ -301,6 +320,12 @@
                         <button type="submit" class="btn btn-primary">Salvar Alterações</button>
                         <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancelar</button>
                     </form>
+
+                    @if ($errors -> any())
+                        @foreach($errors->all() as $error)
+                            {{$error}}
+                        @endforeach
+                    @endif
                 </div>
             </div>
         </div>

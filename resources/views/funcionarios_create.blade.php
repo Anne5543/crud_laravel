@@ -10,12 +10,6 @@
 
 @section('content')
 @include('layouts.navbar_admin')
-@if($errors->any())
-    @foreach($errors->all() as $error
-        {{$error}})
-    @endforeach
-@endif
-
 <h3 style="padding-top: 140px; margin-left:20% ">Criar Funcionários</h3>
 <div class="main-content" style="padding-top: 70px; margin-left:200px;">
     <div class="container mt-2">
@@ -71,6 +65,12 @@
                                 <a href="{{ route('funcionarios_admin') }}" class="btn btn-danger btn-lg" style="width: 200px;">Cancelar</a>
                             </div>
                         </form>
+
+                        @if ($errors -> any())
+                            @foreach($errors->all() as $error)
+                                {{$error}}
+                            @endforeach
+                        @endif
                     </div>
                 </div>
             </div>
